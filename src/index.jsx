@@ -9,8 +9,8 @@ import {
 } from 'react-router-dom';
 import ReactDOM from 'react-dom';
 import './style/main.less';
-import HelloWorld from './welcome';
 import Home from './home';
+import LoadableWelcome from './loadable-welcome';
 
 export default function AppRouter() {
   return (
@@ -42,7 +42,7 @@ export default function AppRouter() {
             <Home />
           </Route>
           <Route path="/hello">
-            <HelloWorld />
+            <LoadableWelcome />
           </Route>
           <Route path="/old-match">
             <Redirect to="/will-match" />
