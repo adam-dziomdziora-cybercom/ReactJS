@@ -2,9 +2,12 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './style/main.less';
 import List from './lists';
+import ListPure from './listsPure';
 
 const HelloWorld = props => {
   const idFromVariable = '123_List_Id';
+  const idPureFromVariable = '456_ListPure_Id';
+  const valueToInject = 'what now?';
 
   return (
     <div>
@@ -17,6 +20,7 @@ const HelloWorld = props => {
       <div id="lastHere" />
       <List id="idFromHand" valueToInject="interesting" />
       <List id={idFromVariable} />
+      <ListPure id={idPureFromVariable} valueToInject={valueToInject} />
     </div>
   );
 };
