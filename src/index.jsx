@@ -1,8 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './style/main.less';
+import List from './lists';
 
 const HelloWorld = props => {
+  const idFromVariable = '123_List_Id';
+
   return (
     <div>
       <h1 className="header">Hello World!</h1>
@@ -12,6 +15,8 @@ const HelloWorld = props => {
       <div id="restHere" />
       <div id="orHere" />
       <div id="lastHere" />
+      <List id="idFromHand" valueToInject="interesting" />
+      <List id={idFromVariable} />
     </div>
   );
 };

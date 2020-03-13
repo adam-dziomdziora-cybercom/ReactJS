@@ -19,17 +19,38 @@ module.exports = {
       },
       {
         test: /\.css$/,
-        use: ['style-loader', 'css-loader'],
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true,
+            },
+          },
+        ],
       },
       {
         test: /\.less$/,
-        use: ['style-loader', 'css-loader', 'less-loader'],
+        use: [
+          'style-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              modules: true,
+            },
+          },
+          'less-loader',
+        ],
       },
     ],
   },
   plugins: [
     new HtmlWebPackPlugin({
       template: path.resolve('./index.html'),
+      favicon: path.resolve('./favicon.png'),
     }),
   ],
+  resolve: {
+    extensions: ['.js', '.jsx'],
+  },
 };
