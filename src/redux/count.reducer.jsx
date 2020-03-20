@@ -1,13 +1,15 @@
+import { fromJS } from 'immutable';
+
 export const TYPES = {
   INCREMENT: 'INCREMENT',
   DECREMENT: 'DECREMENT',
   MODIFY: 'MODIFY',
 };
 
-const INITIAL_STATE = {
+const INITIAL_STATE = fromJS({
   counter: 0,
   name: 'Cybercom',
-};
+});
 
 function getRandomInt(min, max) {
   min = Math.ceil(min);
@@ -18,22 +20,26 @@ function getRandomInt(min, max) {
 export const countReducer = function(state = INITIAL_STATE, action) {
   switch (action.type) {
     case TYPES.INCREMENT: {
-      const newState = { ...state };
-      newState.counter += 1;
+      const actualValue = state.get('counter', 0);
+      const newState = state.set('counter', actualValue + 1);
       return newState;
     }
     case TYPES.DECREMENT: {
-      const newState = { ...state };
-      newState.counter -= 1;
+      const actualValue = state.get('counter', 0);
+      const newState = state.set('counter', actualValue - 1);
       return newState;
     }
     case TYPES.MODIFY: {
-      const newState = { ...state };
-      newState.counter += action.valueToModify;
+      const actualValue = state.get('counter', 0);
+      const actualName = state.get('name', '');
 
       const random = getRandomInt(80, 90);
       const randomizedChar = String.fromCharCode(random);
-      newState.name += randomizedChar;
+      const newName = actualName + randomizedChar;
+
+      const newState = state
+        .set('counter', actualValue + action.valueToModify)
+        .set('name', newName);
 
       return newState;
     }

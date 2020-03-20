@@ -6,8 +6,8 @@ import { PropTypes } from 'prop-types';
 
 const mapStateToProps = state => {
   return {
-    count: state.counter,
-    nameMapped: state.name,
+    count: state.get('counter', 0),
+    nameMapped: state.get('name', ''),
   };
 };
 
