@@ -3,6 +3,22 @@ import List from './lists';
 import ListPure from './listsPure';
 import withLogger from './wrappedLogger';
 import ListComponent from './listsComponent';
+import { connect } from 'react-redux';
+import { PropTypes } from 'prop-types';
+import { TYPES } from './redux/count.reducer';
+
+const mapStateToProps = state => {
+  return {
+    count: state,
+  };
+};
+
+const mapDispatchToProps = dispatch => {
+  return {
+    handleIncrementClick: () => dispatch({ type: TYPES.INCREMENT }),
+    handleDecrementClick: () => dispatch({ type: TYPES.DECREMENT }),
+  };
+};
 
 class HelloWorld extends React.PureComponent {
   constructor(props) {
@@ -10,6 +26,14 @@ class HelloWorld extends React.PureComponent {
     this.state = { date: '', items: [4, 5, 6] };
     this.updateListWithLogger = this.updateListWithLogger.bind(this);
   }
+
+  handleIncrementClick = () => {
+    this.props.handleIncrementClick();
+  };
+
+  handleDecrementClick = () => {
+    this.props.handleDecrementClick();
+  };
 
   updateListWithLogger = () => {
     const date = new Date().toLocaleTimeString();
@@ -33,6 +57,9 @@ class HelloWorld extends React.PureComponent {
       <div>
         <h1 className="header">Hello World!</h1>
         <p>I will display &#9749;</p>
+        <h2>Redux power: {this.props.count}</h2>
+        <button onClick={this.handleIncrementClick}> REDUX +++</button>
+        <button onClick={this.handleDecrementClick}> REDUX ---</button>
         <List id="idFromHand" valueToInject="interesting" />
         <List id={idFromVariable} />
         <ListPure id={idPureFromVariable} valueToInject={valueToInject} />
@@ -48,5 +75,13 @@ class HelloWorld extends React.PureComponent {
     );
   }
 }
+
+HelloWorld.propTypes = {
+  count: PropTypes.number.isRequired,
+  handleIncrementClick: PropTypes.func.isRequired,
+  handleDecrementClick: PropTypes.func.isRequired,
+};
+
+HelloWorld = connect(mapStateToProps, mapDispatchToProps)(HelloWorld);
 
 export default HelloWorld;
