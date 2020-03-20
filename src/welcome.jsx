@@ -9,7 +9,7 @@ import { TYPES } from './redux/count.reducer';
 
 const mapStateToProps = state => {
   return {
-    count: state,
+    count: state.counter,
   };
 };
 
