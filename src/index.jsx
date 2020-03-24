@@ -2,7 +2,6 @@ import React from 'react';
 import {
   HashRouter as Router,
   Route,
-  Link,
   Switch,
   Redirect,
   useLocation,
@@ -14,34 +13,26 @@ import LoadableWelcome from './loadable-welcome';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
 import countReducer from './redux/count.reducer';
+import { fromJS } from 'immutable';
+import TopMenu from './navlink';
 
 let store = createStore(countReducer);
 
+const links = fromJS([
+  { url: '/', label: 'Home, sweet home' },
+  { url: '/hello', label: 'Hello World!' },
+  { url: '/old-match', label: 'Old Match, to be redirected' },
+  { url: '/will-match', label: 'Will Match' },
+  { url: '/will-not-match', label: 'Will Not Match' },
+  { url: '/also/will/not/match', label: 'Also Will Not Match' },
+  { url: '/old-match', label: 'Old Match, to be redirected' },
+]);
 export default function AppRouter() {
   return (
     <Provider store={store}>
       <Router>
         <div>
-          <ul>
-            <li>
-              <Link to="/">Home</Link>
-            </li>
-            <li>
-              <Link to="/hello">Hello World!</Link>
-            </li>
-            <li>
-              <Link to="/old-match">Old Match, to be redirected</Link>
-            </li>
-            <li>
-              <Link to="/will-match">Will Match</Link>
-            </li>
-            <li>
-              <Link to="/will-not-match">Will Not Match</Link>
-            </li>
-            <li>
-              <Link to="/also/will/not/match">Also Will Not Match</Link>
-            </li>
-          </ul>
+          <TopMenu links={links} />
 
           <Switch>
             <Route exact path="/">
