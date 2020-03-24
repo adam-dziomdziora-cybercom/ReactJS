@@ -29,10 +29,22 @@ class Home extends React.PureComponent {
     return (
       <div>
         <h2>Redux power: {this.props.count}</h2>
-        <button onClick={this.props.handleIncrementClick}> REDUX +++</button>
-        <button onClick={this.props.handleDecrementClick}> REDUX ---</button>
+        <button
+          className="btn btn-primary"
+          onClick={this.props.handleIncrementClick}
+        >
+          REDUX +++
+        </button>
+        <button
+          className="btn btn-warning"
+          onClick={this.props.handleDecrementClick}
+        >
+          REDUX ---
+        </button>
 
-        <button onClick={this.handleModifyClick}> REDUX ??? :D</button>
+        <button className="btn btn-danger" onClick={this.handleModifyClick}>
+          REDUX ??? :D
+        </button>
         <h3>REDUX name: {this.props.nameMapped}</h3>
         <div className={style.body}>
           <h1 aria-label="Cybercom loves&#129414;" />

@@ -58,19 +58,33 @@ class HelloWorld extends React.PureComponent {
         <h1 className="header">Hello World!</h1>
         <p>I will display &#9749;</p>
         <h2>Redux power: {this.props.count}</h2>
-        <button onClick={this.handleIncrementClick}> REDUX +++</button>
-        <button onClick={this.handleDecrementClick}> REDUX ---</button>
-        <List id="idFromHand" valueToInject="interesting" />
-        <List id={idFromVariable} />
-        <ListPure id={idPureFromVariable} valueToInject={valueToInject} />
-        <ListWithLogger
-          id="556"
-          valueToInject={this.state.date}
-          onChange={this.onChange}
-          items={this.state.items}
-        />
+        <button className="btn btn-info" onClick={this.handleIncrementClick}>
+          REDUX +++
+        </button>
+        <button className="btn btn-danger" onClick={this.handleDecrementClick}>
+          REDUX ---
+        </button>
+        <div className="row">
+          <div className="col-4">
+            <List id="idFromHand" valueToInject="interesting" />
+            <List id={idFromVariable} />
+          </div>
+          <div className="col-4">
+            <ListPure id={idPureFromVariable} valueToInject={valueToInject} />
+          </div>
+          <div className="col-4">
+            <ListWithLogger
+              id="556"
+              valueToInject={this.state.date}
+              onChange={this.onChange}
+              items={this.state.items}
+            />
+          </div>
+        </div>
         <p>{this.state.update}</p>
-        <button onClick={this.updateListWithLogger}> lets update! </button>
+        <button className="btn btn-dark" onClick={this.updateListWithLogger}>
+          lets update!
+        </button>
       </div>
     );
   }

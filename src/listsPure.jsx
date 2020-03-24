@@ -35,8 +35,12 @@ class ListPure extends React.PureComponent {
             <p>OK, so you want to display also '{valueToInject}'</p>
           )}
         </ul>
-        <button onClick={this.doNothing}> do nothing</button>
-        <button onClick={this.doStuff}> click </button>
+        <button className="btn btn-primary" onClick={this.doNothing}>
+          do nothing
+        </button>
+        <button className="btn btn-secondary" onClick={this.doStuff}>
+          click
+        </button>
       </div>
     );
   }

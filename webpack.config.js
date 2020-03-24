@@ -1,5 +1,6 @@
 const path = require('path');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
   devtool: 'inline-source-map',
@@ -49,6 +50,13 @@ module.exports = {
       template: path.resolve('./index.html'),
       favicon: path.resolve('./favicon.png'),
     }),
+    new CopyWebpackPlugin([
+      {
+        from: './node_modules/bootstrap/dist/css/bootstrap.min.css',
+        to: 'css',
+        flatten: true,
+      },
+    ]),
   ],
   resolve: {
     extensions: ['.js', '.jsx'],
