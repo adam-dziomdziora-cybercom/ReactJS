@@ -1,6 +1,7 @@
 const path = require('path');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const isDevelopment = true;
 
 module.exports = {
   devtool: 'inline-source-map',
@@ -43,6 +44,34 @@ module.exports = {
           'less-loader',
         ],
       },
+      {
+        test: /\.(gif|png|jpe?g|svg)$/i,
+        use: [
+          'file-loader',
+          {
+            loader: 'image-webpack-loader',
+            options: {
+              mozjpeg: {
+                progressive: true,
+                quality: 65,
+              },
+              optipng: {
+                enabled: !isDevelopment,
+              },
+              pngquant: {
+                quality: '65-90',
+                speed: 4,
+              },
+              gifsicle: {
+                interlaced: false,
+              },
+              webp: {
+                quality: 75,
+              },
+            },
+          },
+        ],
+      },
     ],
   },
   plugins: [
@@ -59,6 +88,15 @@ module.exports = {
     ]),
   ],
   resolve: {
-    extensions: ['.js', '.jsx'],
+    extensions: [
+      '.js',
+      '.jsx',
+      '.scss',
+      '.gif',
+      '.png',
+      '.jpg',
+      '.jpeg',
+      '.svg',
+    ],
   },
 };

@@ -1,7 +1,8 @@
 import React from 'react';
 import ImmutablePropTypes from 'react-immutable-proptypes';
 
-import { Link } from 'react-router-dom';
+import { Navbar, Nav } from 'react-bootstrap';
+import logo from '../../logo';
 
 class TopMenu extends React.PureComponent {
   getLinks = () => {
@@ -10,16 +11,24 @@ class TopMenu extends React.PureComponent {
       const url = link.get('url', '');
       const label = link.get('label', '');
       return (
-        <li key={index}>
-          <Link to={url}>{label}</Link>
-        </li>
+        <Nav.Link key={index} href={`#${url}`}>
+          {label}
+        </Nav.Link>
       );
     });
     return res;
   };
 
   render() {
-    return <ul>{this.getLinks()}</ul>;
+    return (
+      <Navbar bg="dark" variant="dark">
+        <Navbar.Brand href="/">
+          <img alt="" src={logo} className="d-inline-block align-top" />
+          React Bootstrap
+        </Navbar.Brand>
+        <Nav className="mr-auto">{this.getLinks()}</Nav>
+      </Navbar>
+    );
   }
 }
 

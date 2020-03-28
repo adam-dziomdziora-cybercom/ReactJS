@@ -48,15 +48,14 @@ const Places = Loadable({
 
 const links = fromJS([
   { url: '/', label: 'Dashboard' },
-  { url: '/manage', label: 'Manage my parking places' },
-  { url: '/places', label: 'Show Cybercom parking places' },
-  { url: '/old-home', label: 'Old Home, sweet home' },
+  { url: '/manage', label: 'Manage' },
+  { url: '/places', label: 'Cybercom parking places' },
+  { url: '/old-home', label: 'Old Home' },
   { url: '/hello', label: 'Hello World!' },
-  { url: '/old-match', label: 'Old Match, to be redirected' },
+  { url: '/old-match', label: 'Old Match' },
   { url: '/will-match', label: 'Will Match' },
   { url: '/will-not-match', label: 'Will Not Match' },
   { url: '/also/will/not/match', label: 'Also Will Not Match' },
-  { url: '/old-match', label: 'Old Match, to be redirected' },
 ]);
 export default function AppRouter() {
   return (
