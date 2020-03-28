@@ -8,18 +8,20 @@ import {
 } from 'react-router-dom';
 import ReactDOM from 'react-dom';
 import './style/main.less';
-import Home from './home';
-import LoadableWelcome from './loadable-welcome';
+import Home from './OLD/home';
+import LoadableWelcome from './OLD/loadable-welcome';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
-import countReducer from './redux/count.reducer';
+import countReducer from './OLD/redux/count.reducer';
 import { fromJS } from 'immutable';
-import TopMenu from './navlink';
+import TopMenu from './OLD/navlink';
+import Dashboard from './dashboard';
 
 let store = createStore(countReducer);
 
 const links = fromJS([
-  { url: '/', label: 'Home, sweet home' },
+  { url: '/', label: 'Dashboard' },
+  { url: '/old-home', label: 'Old Home, sweet home' },
   { url: '/hello', label: 'Hello World!' },
   { url: '/old-match', label: 'Old Match, to be redirected' },
   { url: '/will-match', label: 'Will Match' },
@@ -36,6 +38,9 @@ export default function AppRouter() {
 
           <Switch>
             <Route exact path="/">
+              <Dashboard />
+            </Route>
+            <Route exact path="/old-home">
               <Home />
             </Route>
             <Route path="/hello">
