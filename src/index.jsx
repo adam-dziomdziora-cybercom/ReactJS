@@ -6,21 +6,50 @@ import {
   Redirect,
   useLocation,
 } from 'react-router-dom';
+import Loadable from 'react-loadable';
 import ReactDOM from 'react-dom';
-import './style/main.less';
-import Home from './OLD/home';
-import LoadableWelcome from './OLD/loadable-welcome';
 import { Provider } from 'react-redux';
 import { createStore } from 'redux';
-import countReducer from './OLD/redux/count.reducer';
 import { fromJS } from 'immutable';
-import TopMenu from './OLD/navlink';
-import Dashboard from './dashboard';
+
+import countReducer from './OLD/redux/count.reducer';
+
+import LoadableWelcome from './OLD/loadable-welcome';
+import MyLoader from './OLD/loader';
+
+import './OLD/style/main.less';
 
 let store = createStore(countReducer);
 
+const Dashboard = Loadable({
+  loader: () => import('./dashboard'),
+  loading: MyLoader,
+});
+
+const Home = Loadable({
+  loader: () => import('./OLD/home'),
+  loading: MyLoader,
+});
+
+const TopMenu = Loadable({
+  loader: () => import('./OLD/navlink'),
+  loading: MyLoader,
+});
+
+const ManagePlaces = Loadable({
+  loader: () => import('./manage-places'),
+  loading: MyLoader,
+});
+
+const Places = Loadable({
+  loader: () => import('./places'),
+  loading: MyLoader,
+});
+
 const links = fromJS([
   { url: '/', label: 'Dashboard' },
+  { url: '/manage', label: 'Manage my parking places' },
+  { url: '/places', label: 'Show Cybercom parking places' },
   { url: '/old-home', label: 'Old Home, sweet home' },
   { url: '/hello', label: 'Hello World!' },
   { url: '/old-match', label: 'Old Match, to be redirected' },
@@ -39,6 +68,12 @@ export default function AppRouter() {
           <Switch>
             <Route exact path="/">
               <Dashboard />
+            </Route>
+            <Route exact path="/manage">
+              <ManagePlaces />
+            </Route>
+            <Route exact path="/places">
+              <Places />
             </Route>
             <Route exact path="/old-home">
               <Home />

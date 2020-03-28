@@ -10,10 +10,8 @@ class TopMenu extends React.PureComponent {
       const url = link.get('url', '');
       const label = link.get('label', '');
       return (
-        <li>
-          <Link key={index} to={url}>
-            {label}
-          </Link>
+        <li key={index}>
+          <Link to={url}>{label}</Link>
         </li>
       );
     });
