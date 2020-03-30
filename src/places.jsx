@@ -1,23 +1,22 @@
 import React from 'react';
 import { ListGroup, ListGroupItem } from 'react-bootstrap';
-import { fromJS } from 'immutable';
+import { List } from 'immutable';
+import { connect } from 'react-redux';
+import ImmutablePropTypes from 'react-immutable-proptypes';
+
+const mapStateToProps = state => {
+  return {
+    places: state.get('places', List()),
+  };
+};
 
 class Places extends React.PureComponent {
   constructor(props) {
     super(props);
-    this.state = {
-      places: fromJS([
-        { id: 1, name: 'Place #1', occupied: false },
-        { id: 2, name: 'Place #2', occupied: true },
-        { id: 3, name: 'Place #3', occupied: false },
-        { id: 4, name: 'Place #4', occupied: false },
-        { id: 5, name: 'Place #5', occupied: true },
-      ]),
-    };
   }
 
   getPlaces = () => {
-    const { places } = this.state;
+    const { places } = this.props;
 
     return places.map(place => {
       const id = place.get('id', -1);
@@ -41,4 +40,9 @@ class Places extends React.PureComponent {
   }
 }
 
+Places.propTypes = {
+  places: ImmutablePropTypes.list.isRequired,
+};
+
+Places = connect(mapStateToProps)(Places);
 export default Places;
