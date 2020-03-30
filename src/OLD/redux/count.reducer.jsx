@@ -45,10 +45,20 @@ export const countReducer = function(state = INITIAL_STATE, action) {
       const randomizedChar = String.fromCharCode(random);
       const newName = actualName + randomizedChar;
 
+      const randomPlaceId = getRandomInt(6, 100000000);
+      const newRandomPlace = fromJS({
+        id: randomPlaceId,
+        name: `Place #${randomPlaceId}`,
+        occupied: false,
+      });
+
+      const places = state.get('places', List());
+      const placesLength = places.size;
+
       const newState = state
         .set('counter', actualValue + action.valueToModify)
-        .set('name', newName);
-
+        .set('name', newName)
+        .set('places', places.insert(placesLength, newRandomPlace));
       return newState;
     }
     case TYPES.PARKING_EDIT_PLACE: {

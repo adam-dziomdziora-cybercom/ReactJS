@@ -10,7 +10,9 @@ import * as actionsWithAlias from './places.actions';
 
 const mapStateToProps = state => {
   return {
-    places: state.get('places', List()),
+    places: state
+      .get('places', List())
+      .sort((a, b) => a.get('id', -1) - b.get('id', -1)),
   };
 };
 
