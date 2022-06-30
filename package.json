@@ -10,7 +10,7 @@
     "format": "npx prettier --write \"src/**/*.{js,jsx,ts,tsx,html,css,scss}\"",
     "dev": "webpack --mode development --progress --color --watch",
     "build": "npm run lint && npm run format && npm run prod",
-    "prod": "webpack --mode production -d source-map"
+    "prod": "webpack --mode production"
   },
   "repository": {
     "type": "git",
@@ -57,6 +57,7 @@
     "file-loader": "^6.0.0",
     "html-webpack-plugin": "^3.2.0",
     "image-webpack-loader": "^6.0.0",
+    "imagemin-gifsicle": "^7.0.0",
     "less": "^3.11.1",
     "less-loader": "^5.0.0",
     "prettier": "1.19.1",

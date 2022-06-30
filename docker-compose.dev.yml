@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  frontend:
+    image: reactjs
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    ports:
+      - 8080:80
+    volumes:
+      - ${PWD}/dist:/usr/share/nginx/html
