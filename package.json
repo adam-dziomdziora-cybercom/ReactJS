@@ -5,9 +5,12 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "npx eslint --fix \"src/**/*.{js,jsx}\"",
     "start": "webpack-dev-server --mode development",
-    "format": "prettier --write \"src/**/*.js\"",
-    "dev": "npm run start"
+    "format": "npx prettier --write \"src/**/*.{js,jsx,ts,tsx,html,css,scss}\"",
+    "dev": "webpack --mode development --progress --color --watch",
+    "build": "npm run lint && npm run format && npm run prod",
+    "prod": "webpack --mode production -d source-map"
   },
   "repository": {
     "type": "git",

@@ -4,10 +4,14 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 const isDevelopment = true;
 
 module.exports = {
-  devtool: 'inline-source-map',
+  devtool: 'eval-source-map',
+  performance: {
+    maxEntrypointSize: 4000000,
+    maxAssetSize: 2000000,
+  },
   entry: './src/index.jsx',
   output: {
-    path: path.resolve(__dirname, 'build'),
+    path: path.resolve(__dirname, 'dist'),
     publicPath: '/',
     filename: 'bundle.js',
   },
