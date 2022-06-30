@@ -30,9 +30,9 @@ class ListPure extends React.PureComponent {
     return (
       <div className={styles.listPure}>
         <ul id={id}>
-          My list with ID: '{id}' state: {items}
+          My list with ID: {id} state: {items}
           {valueToInject.length > 0 && (
-            <p>OK, so you want to display also '{valueToInject}'</p>
+            <p>OK, so you want to display also {valueToInject}</p>
           )}
         </ul>
         <button className="btn btn-primary" onClick={this.doNothing}>

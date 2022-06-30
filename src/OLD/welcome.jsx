@@ -96,6 +96,4 @@ HelloWorld.propTypes = {
   handleDecrementClick: PropTypes.func.isRequired,
 };
 
-HelloWorld = connect(mapStateToProps, mapDispatchToProps)(HelloWorld);
-
-export default HelloWorld;
+export default connect(mapStateToProps, mapDispatchToProps)(HelloWorld);

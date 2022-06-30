@@ -46,5 +46,4 @@ Places.propTypes = {
   places: ImmutablePropTypes.list.isRequired,
 };
 
-Places = connect(mapStateToProps)(Places);
-export default Places;
+export default connect(mapStateToProps)(Places);

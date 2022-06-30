@@ -96,5 +96,4 @@ ManagePlaces.propTypes = {
   }).isRequired,
 };
 
-ManagePlaces = connect(mapStateToProps, mapDispatchToProps)(ManagePlaces);
-export default ManagePlaces;
+export default connect(mapStateToProps, mapDispatchToProps)(ManagePlaces);

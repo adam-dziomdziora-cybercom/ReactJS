@@ -4,18 +4,18 @@ import { connect } from 'react-redux';
 import { TYPES } from './redux/count.reducer';
 import { PropTypes } from 'prop-types';
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
     count: state.get('counter', 0),
     nameMapped: state.get('name', ''),
   };
 };
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
     handleIncrementClick: () => dispatch({ type: TYPES.INCREMENT }),
     handleDecrementClick: () => dispatch({ type: TYPES.DECREMENT }),
-    handleModifyClick: value =>
+    handleModifyClick: (value) =>
       dispatch({ type: TYPES.MODIFY, valueToModify: value }),
   };
 };
@@ -61,6 +61,4 @@ Home.propTypes = {
   handleDecrementClick: PropTypes.func.isRequired,
   handleModifyClick: PropTypes.func.isRequired,
 };
-Home = connect(mapStateToProps, mapDispatchToProps)(Home);
-
-export default Home;
+export default connect(mapStateToProps, mapDispatchToProps)(Home);

@@ -27,9 +27,9 @@ class ListComponent extends React.PureComponent {
       <div className={styles.listPure}>
         I am full react component
         <ul id={id}>
-          My list with ID: '{id}' state: {items}
+          My list with ID: {id} state: {items}
           {valueToInject.length > 0 && (
-            <p>OK, so you want to display also '{valueToInject}'</p>
+            <p>OK, so you want to display also {valueToInject}</p>
           )}
         </ul>
         <button className="btn btn-success" onClick={this.doNothing}>

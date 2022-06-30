@@ -1,6 +1,6 @@
 const path = require('path');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
-const CopyWebpackPlugin = require('copy-webpack-plugin');
+const CopyPlugin = require('copy-webpack-plugin');
 const isDevelopment = true;
 
 module.exports = {
@@ -23,7 +23,7 @@ module.exports = {
       {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
-        use: ['babel-loader', 'eslint-loader'],
+        use: ['babel-loader'],
       },
       {
         test: /\.css$/,
@@ -85,13 +85,15 @@ module.exports = {
       template: path.resolve('./index.html'),
       favicon: path.resolve('./favicon.png'),
     }),
-    new CopyWebpackPlugin([
-      {
-        from: './node_modules/bootstrap/dist/css/bootstrap.min.css',
-        to: 'css',
-        flatten: true,
-      },
-    ]),
+
+    new CopyPlugin({
+      patterns: [
+        {
+          from: './node_modules/bootstrap/dist/css/bootstrap.min.css',
+          to: 'css',
+        },
+      ],
+    }),
   ],
   resolve: {
     extensions: [
