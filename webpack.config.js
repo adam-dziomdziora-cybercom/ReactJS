@@ -15,7 +15,9 @@ module.exports = {
     publicPath: '/',
     filename: 'bundle.js',
   },
-  devServer: { contentBase: './dist' },
+  devServer: {
+    port: 8080,
+  },
   module: {
     rules: [
       {
